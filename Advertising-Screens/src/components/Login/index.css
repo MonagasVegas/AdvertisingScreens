@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  item-align: center;
+}
+.text-box {
+  border: 1px solid red;
+  width: 70%;
+  display: flex-col;
+  justify-content: center;
+  item-align: center;
+}
+
+.card {
+  width: 30%;
+  background-color: rgba(255, 255, 255); 
+  border-radius: 25px;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin-top: 10%;
+}
+
+.form {
+  display: flex-col;
+  justify-content: center;
+  item-align: center;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+  color: #fff;
+}
+.span {
+  font-size: 20px;
+  font-weight: normal;
+  color: #fff;
+}
+
+.input-box {
+  display: flex;
+  width: 100%;
+}
+
+.button {
+  width: 50%;
+  font-weight: bold;
+  color: #fff;
+  border: 1px solid #554f95;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #554f95;
+}
+
+.underlinedText {
+  color: #554f95;
+  font-weight: semi-bold;
+  text-decoration: underline
+}
