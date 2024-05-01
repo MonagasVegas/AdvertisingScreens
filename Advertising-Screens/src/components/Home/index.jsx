@@ -7,10 +7,8 @@ import "./index.css";
 const Home = () => {
   return (
     <>
-      <div className="container">
-        
-          <Header />
-        
+      <div className="container-home">
+        <Header />
 
         <div style={{ border: "1px solid #ff0000" }}>
           <h1 style={{ color: "#fff" }}>
@@ -18,13 +16,13 @@ const Home = () => {
           </h1>
         </div>
 
-        <div>
-          <ScreenCards />
-        </div>
-
-        <div>
+        <div style={{  width: '90%' }}>
           <Carrusel />
         </div>
+
+        {/* <div>
+          <ScreenCards />
+        </div> */}
       </div>
     </>
   );

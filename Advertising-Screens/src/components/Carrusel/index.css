@@ -1,0 +1,10 @@
+.img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    width: 100px;
+    border: 1px solid #ff0000
+}
+
+.container-carrusel {
+    background: '#fff'
+}
