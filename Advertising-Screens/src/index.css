@@ -5,13 +5,13 @@
 body {
   background-color: #282828;
   margin: 0;
-  font-family: "Times New Roman", Times, serif;
+  font-family: Inter;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: "Times New Roman", Times, serif;
+  font-family: Inter
 }
 
 /* width */
