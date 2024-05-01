@@ -8,8 +8,14 @@ const Home = () => {
   return (
     <>
       <div className="container">
-        <div>
+        
           <Header />
+        
+
+        <div style={{ border: "1px solid #ff0000" }}>
+          <h1 style={{ color: "#fff" }}>
+            Consigue: <span>Más ventas</span>
+          </h1>
         </div>
 
         <div>
