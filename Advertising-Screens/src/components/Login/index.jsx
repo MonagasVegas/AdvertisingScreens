@@ -3,8 +3,11 @@ import "./index.css";
 import { useForm } from "react-hook-form";
 import city from "../../assets/images/pu.png";
 import { postLogin } from "../../services/postLogin";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -26,6 +29,9 @@ const Login = () => {
     .then((res) => {
       const response = data;
       console.log("🐉 ~ .then ~ response:", response)
+      navigate("/home");
+
+     
     }).catch((error) => {
         console.log('ERROR', error)
     })
