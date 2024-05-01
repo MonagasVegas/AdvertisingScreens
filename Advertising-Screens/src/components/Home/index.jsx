@@ -16,7 +16,7 @@ const Home = () => {
           </h1>
         </div>
 
-        <div style={{  width: '90%' }}>
+        <div style={{  width: '50%' }}>
           <Carrusel />
         </div>
 

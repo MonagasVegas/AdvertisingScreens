@@ -13,13 +13,22 @@ import claro from "../../assets/images/claro.png";
 import spo from "../../assets/images/spo.png";
 import nike from "../../assets/images/nike.png";
 import disney from "../../assets/images/disney.png";
-import ford from '../../assets/images/ford.png';
-import latam from "../../assets/images/latam.png"
-
+import ford from "../../assets/images/ford.png";
+import latam from "../../assets/images/latam.png";
+import coca from "../../assets/images/coca.svg";
+import fox from '../../assets/images/fox.svg';
+import san from '../../assets/images/san.svg';
+import linkedin from '../../assets/images/Linkedin.svg'
 
 const Carrusel = () => {
   return (
     <>
+      <div style={{ display: 'flex',  alignItems: "center", justifyContent: 'center' }}>
+        <h1 style={{ color: "#fff" }}>
+          Impulsando a las empresas líderes del mundo{" "}
+        </h1>
+      </div>
+
       <div>
         <Swiper
           effect={"coverflow"}
@@ -38,7 +47,7 @@ const Carrusel = () => {
           loop={true}
           spaceBetween={50}
           autoplay={{
-            delay: 900,
+            delay: 1500,
             disableOnInteraction: false,
           }}
           scrollbar={{ draggable: true }}
@@ -51,7 +60,7 @@ const Carrusel = () => {
                 display: "flex",
               }}
             >
-              <img src={bmw} alt="" width={100} />
+              <img src={bmw} alt="" width={200} />
             </div>
           </SwiperSlide>
 
@@ -63,7 +72,7 @@ const Carrusel = () => {
                 display: "flex",
               }}
             >
-              <img src={claro} alt="" width={100} />
+              <img src={claro} alt="" width={200} />
             </div>
           </SwiperSlide>
 
@@ -75,7 +84,7 @@ const Carrusel = () => {
                 display: "flex",
               }}
             >
-              <img src={spo} alt="" width={100} />
+              <img src={spo} alt="" width={200} />
             </div>
           </SwiperSlide>
 
@@ -87,7 +96,7 @@ const Carrusel = () => {
                 display: "flex",
               }}
             >
-              <img src={nike} alt="" width={100} />
+              <img src={nike} alt="" width={200} />
             </div>
           </SwiperSlide>
 
@@ -99,7 +108,7 @@ const Carrusel = () => {
                 display: "flex",
               }}
             >
-              <img src={disney} alt="" width={100} />
+              <img src={disney} alt="" width={200} />
             </div>
           </SwiperSlide>
 
@@ -111,7 +120,7 @@ const Carrusel = () => {
                 display: "flex",
               }}
             >
-              <img src={ford} alt="" width={100} />
+              <img src={ford} alt="" width={200} />
             </div>
           </SwiperSlide>
 
@@ -123,7 +132,55 @@ const Carrusel = () => {
                 display: "flex",
               }}
             >
-              <img src={latam} alt="" width={100} />
+              <img src={latam} alt="" width={200} />
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide className="slider-item ">
+            <div
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <img src={coca} alt="" width={200} />
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide className="slider-item ">
+            <div
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <img src={fox} alt="" width={200} />
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide className="slider-item ">
+            <div
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <img src={san} alt="" width={200} />
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide className="slider-item ">
+            <div
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <img src={linkedin} alt="" width={200} />
             </div>
           </SwiperSlide>
         </Swiper>
