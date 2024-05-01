@@ -1,0 +1,119 @@
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  item-align: center;
+}
+
+.img {
+    background-image: url('../../assets/images/silueta.png');
+    background-repeat: no-repeat;
+    object-fit: cover;
+    aspect-ratio: 1
+}
+
+.text-box {
+  border: 1px solid red;
+  width: 70%;
+  display: flex-col;
+  justify-content: center;
+  item-align: center;
+}
+
+.card {
+  width: 30%;
+  background-color: rgba(255, 255, 255); 
+  border-radius: 25px;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin-top: 5%;
+}
+
+@media (max-width: 768px) {
+    .card {
+      width: 80%;
+      margin-top: 15%;
+      padding: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      width: 90%;
+      margin-top: 50%;
+      padding: 1.5rem;
+    }
+  }
+
+.form {
+  display: flex-col;
+  justify-content: center;
+  item-align: center;
+  width: 100%;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+  color: #fff;
+}
+.span {
+  font-size: 20px;
+  font-weight: normal;
+  color: #fff;
+}
+
+.button {
+  width: 50%;
+  font-weight: bold;
+  color: #fff;
+  border: 1px solid #554f95;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #554f95;
+}
+
+.underlinedText {
+  color: #554f95;
+  font-weight: semi-bold;
+  text-decoration: underline
+}
+
+.input-field {
+    position: relative;
+}
+
+.input-field input {
+    width: 100%;
+    height: 60px;
+    border-radius: 6px;
+    font-size: 18px;
+    border: 2px solid #554F95;
+    background: transparent;
+    color: #000;
+    outline: none;
+    transition: .3s;
+    color-scheme: dark
+}
+
+.input-field label {
+    position: absolute;
+    transform: translateY(-50%);
+    color: #554F95;
+    pointer-events: none;
+    top: 0;
+    left: 15px;
+    font-size: 16px;
+    padding: 0 2px;
+    background: #fff
+}
+
+.error {
+    color: #ff0000;
+    font-weight: semi-bold;
+    font-size: 13px;
+    padding-left: 10px;
+}
