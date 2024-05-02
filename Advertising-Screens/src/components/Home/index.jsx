@@ -8,21 +8,23 @@ const Home = () => {
   return (
     <>
       <div className="container-home">
+        <div >
         <Header />
+        </div>
 
-        <div style={{ border: "1px solid #ff0000" }}>
+        <div style={{ border: "1px solid #ff0000", paddingTop: '10%' }}>
           <h1 style={{ color: "#fff" }}>
             Consigue: <span>Más ventas</span>
           </h1>
         </div>
 
-        <div style={{  width: '50%' }}>
+        <div style={{ paddingTop: '5%' }}>
+          <ScreenCards />
+        </div>
+        <div style={{  width: '50%', paddingTop: '10%', paddingBottom: '10%' }}>
           <Carrusel />
         </div>
 
-        {/* <div>
-          <ScreenCards />
-        </div> */}
       </div>
     </>
   );
