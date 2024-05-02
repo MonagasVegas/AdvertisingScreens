@@ -99,7 +99,8 @@
     color: #000;
     outline: none;
     transition: .3s;
-    color-scheme: dark
+    color-scheme: dark;
+    padding: 0px 0px 0px 9px
 }
 
 .input-field label {
