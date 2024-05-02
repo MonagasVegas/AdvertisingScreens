@@ -27,10 +27,10 @@ const Login = () => {
 
     postLogin(body)
     .then((res) => {
-      const response = data;
+      const response = res.data;
+      window.localStorage.setItem('@token', response.token)
       console.log("🐉 ~ .then ~ response:", response)
       navigate("/home");
-
      
     }).catch((error) => {
         console.log('ERROR', error)

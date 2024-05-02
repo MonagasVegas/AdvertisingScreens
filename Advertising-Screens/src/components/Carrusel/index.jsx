@@ -15,16 +15,16 @@ import nike from "../../assets/images/nike.png";
 import disney from "../../assets/images/disney.png";
 import ford from "../../assets/images/ford.png";
 import latam from "../../assets/images/latam.png";
-import coca from "../../assets/images/coca.svg";
-import fox from '../../assets/images/fox.svg';
-import san from '../../assets/images/san.svg';
-import linkedin from '../../assets/images/Linkedin.svg'
+import coca from "../../assets/svg/coca.svg";
+import fox from '../../assets/svg/fox.svg';
+import san from '../../assets/svg/san.svg';
+import linkedin from '../../assets/svg/Linkedin.svg'
 
 const Carrusel = () => {
   return (
     <>
       <div style={{ display: 'flex',  alignItems: "center", justifyContent: 'center' }}>
-        <h1 style={{ color: "#fff" }}>
+        <h1 style={{ color: "#fff", textAlign: 'center' }}>
           Impulsando a las empresas líderes del mundo{" "}
         </h1>
       </div>
