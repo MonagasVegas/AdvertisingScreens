@@ -101,7 +101,7 @@ const array = [
 const ScreenCards = () => {
   return (
     <div >
-      <div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
+      <div style={{  width: '100%', paddingBottom: '5%', display: 'flex', justifyContent: 'center'}}>
         <SearchBar placeholder="Buscar" />
       </div>
 

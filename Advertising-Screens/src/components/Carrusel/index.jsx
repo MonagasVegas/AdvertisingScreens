@@ -24,7 +24,7 @@ const Carrusel = () => {
   return (
     <>
       <div style={{ display: 'flex',  alignItems: "center", justifyContent: 'center' }}>
-        <h1 style={{ color: "#fff" }}>
+        <h1 style={{ color: "#fff", textAlign: 'center' }}>
           Impulsando a las empresas líderes del mundo{" "}
         </h1>
       </div>
