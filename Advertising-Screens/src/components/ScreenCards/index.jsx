@@ -84,7 +84,10 @@ const ScreenCards = () => {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >        
-        <ScreenDetails screenId={screenId} />
+        <ScreenDetails 
+        screenId={screenId} 
+        setOpen={setOpen}
+        />
       </Dialog>
     </div>
   );
