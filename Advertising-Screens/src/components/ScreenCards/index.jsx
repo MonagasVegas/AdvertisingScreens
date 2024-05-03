@@ -5,13 +5,16 @@ import image from "../../assets/images/image.png";
 import { getScreens } from "../../services/getScreens";
 import Dialog from "@mui/material/Dialog";
 import ScreenDetails from "../ScreenDetails";
+import { isEmpty } from "lodash";
 
 const ScreenCards = () => {
   const [screens, setScreens] = useState([]);
   const [open, setOpen] = useState(false);
   const [screenId, setScreenId] = useState();
+  const [filterScreen, setFilterScreen] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  console.log("🐉 ~ ScreenCards ~ screens:", screens);
+  
 
   useEffect(() => {
     const token = window.localStorage.getItem("@token");
@@ -29,7 +32,6 @@ const ScreenCards = () => {
 
   // Capturamos el id de lo seleccionado
   const handleDetail = (event) => {
-    console.log("AQUIII:", event.currentTarget.id);
     const id = event.currentTarget.id;
     setScreenId(id);
     setOpen(true);
@@ -39,21 +41,38 @@ const ScreenCards = () => {
     setOpen(false);
   };
 
+  const handleSearchQuery = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  useEffect(() => {
+    // Si no hay query de busqueda, se asignan todas las pantallas
+    if (!searchQuery) {
+      setFilterScreen(screens);
+    }
+    // Garantizando la busqueda en minusculas con el toLowerCase
+    const newSearchQuery = searchQuery?.toLowerCase() || "";
+    const newProduct = screens.filter(
+      (screen) =>
+        screen.name.toLowerCase().includes(newSearchQuery) ||
+        screen.type.toLowerCase().includes(newSearchQuery)
+    );
+    setFilterScreen(newProduct);
+  }, [searchQuery, screens]);
+
   return (
     <div>
       <div
         style={{
           width: "100%",
           paddingBottom: "5%",
-          display: "flex",
-          justifyContent: "center",
         }}
       >
-        <SearchBar placeholder="Buscar" />
+        <SearchBar onChange={handleSearchQuery} placeholder="Buscar" />
       </div>
 
       <div className="grid">
-        {screens.map((screen) => (
+        {filterScreen.map((screen) => (
           <div
             key={screen.id}
             className="container-card"
@@ -66,28 +85,30 @@ const ScreenCards = () => {
 
             <div className="box">
               <div className="content">
-                <span className="text-color">Título:</span>
+                <span className="text-title">Título:</span> &nbsp;
                 <span className="text-color">{screen.name}</span>
               </div>
               <div className="content">
-                <span className="text-color">Idioma:</span>
+                <span className="text-title">Precio: </span> &nbsp;
                 <span className="text-color">{screen.price_per_day}</span>
               </div>
             </div>
           </div>
         ))}
       </div>
+      {!isEmpty(searchQuery) && isEmpty(filterScreen) && (
+        <div className="error">
+          <p style={{ fontSize: 20, paddingTop: 50}}>Búsqueda sin resultados.</p>
+        </div>
+      )}
 
       <Dialog
         fullWidth
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
-      >        
-        <ScreenDetails 
-        screenId={screenId} 
-        setOpen={setOpen}
-        />
+      >
+        <ScreenDetails screenId={screenId} setOpen={setOpen} />
       </Dialog>
     </div>
   );

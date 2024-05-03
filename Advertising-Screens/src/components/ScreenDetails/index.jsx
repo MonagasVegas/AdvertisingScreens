@@ -5,6 +5,7 @@ import { getScreensById } from "../../services/getScreensById";
 import { Link } from "react-router-dom";
 import { deleteScreen } from "../../services/deleteScreen";
 
+// eslint-disable-next-line react/prop-types
 const ScreenDetails = ({ screenId, setOpen }) => {
   const [response, setResponse] = useState();
   console.log("🐉 ~ ScreenDetails ~ response:", response);
@@ -19,7 +20,7 @@ const ScreenDetails = ({ screenId, setOpen }) => {
       .catch((error) => {
         console.log("🐉 ~ useEffect ~ error:", error);
       });
-  }, [screenId]);
+  }, [screenId, token]);
 
   const handleDetele = () => {
     deleteScreen(screenId, token)

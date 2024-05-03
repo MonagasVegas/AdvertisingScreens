@@ -16,6 +16,12 @@ const Header = () => {
             // to="/reviews"
             className="text-link"
           >
+            Contacto
+          </Link>
+          <Link
+            // to="/reviews"
+            className="text-link"
+          >
             Quienes Somos
           </Link>
 
@@ -23,13 +29,13 @@ const Header = () => {
             // to="/billboard"
             className="text-link"
           >
-            Servicios
+            Editar Screen
           </Link>
           <Link
             className="text-button"
             // to="/ticket"
           >
-            Agenda una reunión
+            Crear Screen
           </Link>
         </div>
     </>

@@ -66,5 +66,18 @@
   }
 
   .text-color {
-    color: #fff
+    color: #fff;
+    font-weight: bold;
+    font-style: oblique;
+  }
+
+  .text-title {
+    color: #fff;
+  }
+
+  .error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-items: center;
   }
