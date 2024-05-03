@@ -3,19 +3,23 @@ import "./index.css";
 import SearchBar from "../Search";
 import image from "../../assets/images/image.png";
 import { getScreens } from "../../services/getScreens";
-
+import Dialog from "@mui/material/Dialog";
+import ScreenDetails from "../ScreenDetails";
 
 const ScreenCards = () => {
   const [screens, setScreens] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [screenId, setScreenId] = useState();
+
   console.log("🐉 ~ ScreenCards ~ screens:", screens);
 
   useEffect(() => {
     const token = window.localStorage.getItem("@token");
     const pageSize = 1;
-    const offset= 1
+    const offset = 1;
 
-    getScreens(pageSize,offset,token)
-      .then(({data: {data: data } }) => {
+    getScreens(pageSize, offset, token)
+      .then(({ data: { data: data } }) => {
         setScreens(data);
       })
       .catch((error) => {
@@ -23,14 +27,17 @@ const ScreenCards = () => {
       });
   }, []);
 
+  // Capturamos el id de lo seleccionado
+  const handleDetail = (event) => {
+    console.log("AQUIII:", event.currentTarget.id);
+    const id = event.currentTarget.id;
+    setScreenId(id);
+    setOpen(true);
+  };
 
-// Capturamos el id de lo seleccionado
-const handleDetail = (event) => {
-  console.log('hicimos click.')
-  console.log('AQUIII:', event.currentTarget.id)
-}
-
-
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -47,11 +54,11 @@ const handleDetail = (event) => {
 
       <div className="grid">
         {screens.map((screen) => (
-          <div 
-          key={screen.id} 
-          className="container-card"
-          onClick={handleDetail}
-          id={screen.id}
+          <div
+            key={screen.id}
+            className="container-card"
+            onClick={handleDetail}
+            id={screen.id}
           >
             <div style={{ justifyContent: "center", display: "flex" }}>
               <img className="imga" src={screen.picture_url || image} alt="" />
@@ -70,6 +77,15 @@ const handleDetail = (event) => {
           </div>
         ))}
       </div>
+
+      <Dialog
+        fullWidth
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <ScreenDetails />
+      </Dialog>
     </div>
   );
 };
