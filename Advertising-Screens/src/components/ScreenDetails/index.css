@@ -2,5 +2,10 @@
   object-fit: cover;
   width: 100%;
   aspect-ratio: 1;
-  border-radius: 20px
+  border-radius: 20px;
+}
+
+.text-detail {
+    font-style: italic;
+    font-weight: normal;
 }

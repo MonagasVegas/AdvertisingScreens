@@ -15,7 +15,7 @@ const ScreenCards = () => {
 
   useEffect(() => {
     const token = window.localStorage.getItem("@token");
-    const pageSize = 1;
+    const pageSize = 3;
     const offset = 1;
 
     getScreens(pageSize, offset, token)
@@ -83,8 +83,8 @@ const ScreenCards = () => {
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
-      >
-        <ScreenDetails />
+      >        
+        <ScreenDetails screenId={screenId} />
       </Dialog>
     </div>
   );
