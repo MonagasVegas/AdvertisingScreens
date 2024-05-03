@@ -13,12 +13,6 @@ const Home = () => {
         </div>
 
         <div style={{ paddingTop: "5%" }}>
-          <h1 style={{ color: "#fff" }}>
-            Consigue: <span>Más ventas</span>
-          </h1>
-        </div>
-
-        <div style={{ paddingTop: "5%" }}>
           <ScreenCards />
         </div>
         <div style={{ width: "50%", paddingTop: "10%", paddingBottom: "10%" }}>
