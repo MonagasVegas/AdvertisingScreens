@@ -7,7 +7,7 @@ const Header = () => {
     <>
         <div className="container-header">
           <Link
-            // to="/reviews"
+            to="/home"
             className="text-link"
           >
             Inicio
@@ -26,14 +26,8 @@ const Header = () => {
           </Link>
 
           <Link
-            // to="/billboard"
-            className="text-link"
-          >
-            Editar Screen
-          </Link>
-          <Link
             className="text-button"
-            // to="/ticket"
+             to="/createScreen"
           >
             Crear Screen
           </Link>
