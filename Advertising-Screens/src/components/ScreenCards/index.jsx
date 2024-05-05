@@ -18,7 +18,7 @@ const ScreenCards = () => {
 
   useEffect(() => {
     const token = window.localStorage.getItem("@token");
-    const pageSize = 3;
+    const pageSize = 8;
     const offset = 1;
 
     getScreens(pageSize, offset, token)
