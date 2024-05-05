@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <>
         <div className="container-header">
           <Link
             to="/home"
@@ -32,7 +31,6 @@ const Header = () => {
             Crear Screen
           </Link>
         </div>
-    </>
   );
 };
 

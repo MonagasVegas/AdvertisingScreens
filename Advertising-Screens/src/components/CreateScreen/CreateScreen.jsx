@@ -18,18 +18,15 @@ const CreateScreen = () => {
 
   return (
     <div>
-      <div>
+       <div style={{ marginTop: "10px" }}>
         <Header />
       </div>
 
-      <div>
-        <h1>Crea tus pantallas publicitarias.</h1>
-      </div>
-
-      <div style={{ border: "1px solid #ff0000", width: '100%' }}>
-        <form  onSubmit={onSubmit}>
-          <div style={{ border: "1px solid #ff0000", width: '40%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '20px' }}>
-         
+      <div className="container-form">
+        <form 
+        onSubmit={onSubmit}
+        className="form-create"
+        >
             <div className="input-fieldCreate">
               <label>Nombre</label>
               <input
@@ -167,8 +164,6 @@ const CreateScreen = () => {
               />
               {errors.type && <p className="error">{errors.type.message}</p>}
             </div>
-          </div>
-          <br/><br />
 
           <div style={{ 
             display: 'flex', 
@@ -178,7 +173,7 @@ const CreateScreen = () => {
             paddingBottom: '30px',
             paddingTop: '30px',
           }}>
-            <div style={{width: '30%'}}>
+            <div style={{width: '50%'}}>
               <button 
               style={{
                 background: "#000",
@@ -194,7 +189,7 @@ const CreateScreen = () => {
               </button>
             </div>
 
-            <div style={{width: '30%'}}>
+            <div style={{width: '50%'}}>
             <button 
               style={{
                 background: "#000",
