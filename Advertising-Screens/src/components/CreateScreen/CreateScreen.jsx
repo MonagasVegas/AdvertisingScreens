@@ -3,6 +3,7 @@ import Header from "../Header";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "./index.css";
+import { postScreen } from "../../services/postScreen";
 
 const CreateScreen = () => {
   const navigate = useNavigate();
@@ -20,6 +21,27 @@ const CreateScreen = () => {
 
   const onSubmit = handleSubmit((data) => {
     console.log("🐉 ~ onSubmit ~ data:", data);
+    const token = window.localStorage.getItem("@token");
+    const body = {
+      name: data.name,
+      description: data.description,
+      price_per_day: data.price_per_day,
+      resolution_height: data.resolution_height,
+      resolution_width: data.resolution_width,
+      type: data.type,
+    };
+    console.log("🐉 ~ onSubmit ~ body:", body);
+
+    postScreen(body, token)
+      .then((res) => {
+        const response = res.data;
+        console.log("🐉 ~ .then ~ response:", response);
+
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+      });
   });
 
   return (
@@ -62,12 +84,8 @@ const CreateScreen = () => {
                   message: "Campo requerido, debe ingresar una descripción.",
                 },
                 minLength: {
-                  value: 4,
+                  value: 20,
                   message: "Debe ingresar mínimo 4 caracteres.",
-                },
-                maxLength: {
-                  value: 30,
-                  message: "Debe ingresar máaximo 20 caracteres.",
                 },
               })}
             />
@@ -80,11 +98,11 @@ const CreateScreen = () => {
             <label>Precio</label>
             <input
               type="number"
-              {...register("pice", {
+              {...register("price_per_day", {
                 required: {
                   value: true,
                   message: "Campo requerido, debe ingresar un precio.",
-                }
+                },
               })}
             />
             {errors.price && <p className="error">{errors.price.message}</p>}
@@ -98,7 +116,7 @@ const CreateScreen = () => {
                 required: {
                   value: true,
                   message: "Campo requerido, debe ingresar una altura.",
-                }
+                },
               })}
             />
             {errors.resolution_height && (
@@ -114,7 +132,7 @@ const CreateScreen = () => {
                 required: {
                   value: true,
                   message: "Campo requerido, debe ingresar un ancho.",
-                }
+                },
               })}
             />
             {errors.resolution_width && (
@@ -123,24 +141,19 @@ const CreateScreen = () => {
           </div>
 
           <div className="input-fieldCreate">
-            <label>Tipo</label>
-            <input
-              type="text"
+            <label> Selecciona un Tipo</label>
+            <select
               {...register("type", {
                 required: {
                   value: true,
-                  message: "Campo requerido, debe ingresar un tipo.",
-                },
-                minLength: {
-                  value: 5,
-                  message: "Debe ingresar mínimo 5 caracteres.",
-                },
-                maxLength: {
-                  value: 10,
-                  message: "Debe ingresar máaximo 10 caracteres.",
+                  message: "Campo requerido",
                 },
               })}
-            />
+            >
+              <option value="">Seleccionar</option>
+              <option value="indoor">Interior</option>
+              <option value="outdoor">Exterior</option>
+            </select>
             {errors.type && <p className="error">{errors.type.message}</p>}
           </div>
 

@@ -14,7 +14,6 @@ const ScreenDetails = ({ screenId, setOpen }) => {
   useEffect(() => {
     getScreensById(screenId, token)
       .then((data) => {
-        console.log("SUCES");
         setResponse(data.data);
       })
       .catch((error) => {
