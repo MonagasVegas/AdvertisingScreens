@@ -146,7 +146,7 @@ const CreateScreen = () => {
               {...register("type", {
                 required: {
                   value: true,
-                  message: "Campo requerido",
+                  message: "Campo requerido, debe ingresar un tipo.",
                 },
               })}
             >
