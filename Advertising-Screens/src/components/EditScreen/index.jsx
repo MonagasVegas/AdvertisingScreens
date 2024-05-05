@@ -1,12 +1,15 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import "./index.css";
-import { postScreen } from "../../services/postScreen";
+import { putScreen } from "../../services/putScreen";
 
-const CreateScreen = () => {
+const EditScreen = () => {
+  const { state } = useLocation();
   const navigate = useNavigate();
+  const id = state.response.id;
+  const token = window.localStorage.getItem("@token");
+
   const {
     register,
     handleSubmit,
@@ -18,7 +21,7 @@ const CreateScreen = () => {
   };
 
   const onSubmit = handleSubmit((data) => {
-    const token = window.localStorage.getItem("@token");
+
     const body = {
       name: data.name,
       description: data.description,
@@ -28,12 +31,12 @@ const CreateScreen = () => {
       type: data.type,
     };
 
-    postScreen(body, token)
-      .then((res) => {
-        navigate("/home");
+    putScreen(id, body, token)
+      .then((data) => {
+        navigate('/home')
       })
       .catch((error) => {
-        console.log("ERROR", error);
+        console.log("🐉 ~ putScreen ~ error:", error);
       });
   });
 
@@ -49,6 +52,7 @@ const CreateScreen = () => {
             <label>Nombre</label>
             <input
               type="text"
+              defaultValue={state.response.name}
               {...register("name", {
                 required: {
                   value: true,
@@ -59,8 +63,8 @@ const CreateScreen = () => {
                   message: "Debe ingresar mínimo 10 caracteres.",
                 },
                 maxLength: {
-                  value: 30,
-                  message: "Debe ingresar máaximo 20 caracteres.",
+                  value: 50,
+                  message: "Debe ingresar máaximo 50 caracteres.",
                 },
               })}
             />
@@ -71,6 +75,7 @@ const CreateScreen = () => {
             <label>Descripción</label>
             <input
               type="text"
+              defaultValue={state.response.description}
               {...register("description", {
                 required: {
                   value: true,
@@ -91,6 +96,7 @@ const CreateScreen = () => {
             <label>Precio</label>
             <input
               type="number"
+              defaultValue={state.response.price_per_day}
               {...register("price_per_day", {
                 required: {
                   value: true,
@@ -105,6 +111,7 @@ const CreateScreen = () => {
             <label>Altura de resolución </label>
             <input
               type="number"
+              defaultValue={state.response.resolution_height}
               {...register("resolution_height", {
                 required: {
                   value: true,
@@ -121,6 +128,7 @@ const CreateScreen = () => {
             <label>Ancho de resolución</label>
             <input
               type="number"
+              defaultValue={state.response.resolution_width}
               {...register("resolution_width", {
                 required: {
                   value: true,
@@ -136,6 +144,7 @@ const CreateScreen = () => {
           <div className="input-fieldCreate">
             <label> Selecciona un Tipo</label>
             <select
+              defaultValue={state.response.type}
               {...register("type", {
                 required: {
                   value: true,
@@ -160,7 +169,7 @@ const CreateScreen = () => {
               paddingTop: "30px",
             }}
           >
-            <div style={{ width: "100%" }}>
+            <div style={{ width: "50%" }}>
               <button
                 style={{
                   background: "#000",
@@ -171,14 +180,15 @@ const CreateScreen = () => {
                   fontWeight: "bold",
                   color: "#fff",
                   cursor: "pointer"
+
                 }}
                 type="submit"
               >
-                Crear
+                Editar
               </button>
             </div>
 
-            <div style={{ width: "100%" }}>
+            <div style={{ width: "50%" }}>
               <button
                 style={{
                   background: "#000",
@@ -189,6 +199,7 @@ const CreateScreen = () => {
                   fontWeight: "bold",
                   color: "#fff",
                   cursor: "pointer"
+
                 }}
                 onClick={handleGoBack}
               >
@@ -204,4 +215,4 @@ const CreateScreen = () => {
   );
 };
 
-export default CreateScreen;
+export default EditScreen;

@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import image from "../../assets/images/image.png";
 import "./index.css";
 import { getScreensById } from "../../services/getScreensById";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { deleteScreen } from "../../services/deleteScreen";
+import { getScreens } from "../../services/getScreens";
 
 // eslint-disable-next-line react/prop-types
 const ScreenDetails = ({ screenId, setOpen }) => {
   const [response, setResponse] = useState();
-  console.log("🐉 ~ ScreenDetails ~ response:", response);
+  const navigate = useNavigate();
   const token = window.localStorage.getItem("@token");
+  const pageSize = 8;
+  const offset = 1;
 
   useEffect(() => {
     getScreensById(screenId, token)
@@ -22,14 +25,25 @@ const ScreenDetails = ({ screenId, setOpen }) => {
   }, [screenId, token]);
 
   const handleDetele = () => {
+
+    console.log('ESTAMOS EN ELIMINAR')
     deleteScreen(screenId, token)
-      .then((data) => {
-        console.log("🐉 ~ .then ~ data:", data.data)
-        setOpen(false)
+      .then(() => {
+        
+        getScreens(pageSize, offset, token)
+        .then(() => {
+          console.log('estamos en el get screen')
+          setOpen(false);
+        });
       })
       .catch((error) => {
         console.log("🐉 ~ .then ~ error:", error);
       });
+  };
+
+  const handleEdit = () => {
+    console.log("hacemos click");
+    navigate("/editScreen", { state: { response } });
   };
 
   return (
@@ -38,7 +52,7 @@ const ScreenDetails = ({ screenId, setOpen }) => {
         display: "flex",
         flexDirection: "column",
         padding: "10px 10px 10px 10px",
-        background: "linear-gradient(to left, #554F95 20%, #b30ac6 100%)",
+        background: "linear-gradient(to left, #8d9bb7 20%, #7a7a7a 100%)",
       }}
     >
       <div
@@ -98,13 +112,13 @@ const ScreenDetails = ({ screenId, setOpen }) => {
             style={{
               width: "100%",
               borderRadius: "5px",
-              background: "rgb(179, 10, 198, 0.2)",
+              background: "rgb(122, 122, 122, 0.2)",
               border: "2px solid #91c870",
               padding: "8px 8px 8px 8px",
               fontWeight: "bold",
               color: "#fff",
+              cursor: "pointer"
             }}
-            type="submit"
             onClick={handleDetele}
           >
             Eliminar
@@ -114,14 +128,16 @@ const ScreenDetails = ({ screenId, setOpen }) => {
         <div style={{ width: "50%" }}>
           <button
             style={{
-              background: "#554F95",
+              background: "rgb(122, 122, 122, 0.2)",
               width: "100%",
               borderRadius: "5px",
               border: "2px solid #91c870",
               padding: "8px 8px 8px 8px",
               fontWeight: "bold",
               color: "#fff",
+              cursor: "pointer"
             }}
+            onClick={handleEdit}
           >
             Editar
           </button>
