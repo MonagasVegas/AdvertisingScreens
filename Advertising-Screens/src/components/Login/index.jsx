@@ -14,27 +14,21 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  console.log("ERROR", errors);
-
   const onSubmit = handleSubmit((data) => {
-    console.log("data", data);
-    console.log("ESTO ES EL MENSAJE DE EL BOTON. ");
-
     const body = {
       email: data.email,
       password: data.password,
     };
 
     postLogin(body)
-    .then((res) => {
-      const response = res.data;
-      window.localStorage.setItem('@token', response.token)
-      console.log("🐉 ~ .then ~ response:", response)
-      navigate("/home");
-     
-    }).catch((error) => {
-        console.log('ERROR', error)
-    })
+      .then((res) => {
+        const response = res.data;
+        window.localStorage.setItem("@token", response.token);
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+      });
   });
 
   return (
@@ -49,15 +43,15 @@ const Login = () => {
                 marginBottom: "20px",
               }}
             >
-              <h1>Sign In</h1>
+              <h1>Iniciar sesión</h1>
               <span>
-                Dont have an account?{" "}
-                <span className="underlinedText">Sign Up</span>
+                ¿No tienes una cuenta?{" "}
+                <span className="underlinedText">Registrarse</span>
               </span>
             </div>
 
             <div className="input-field">
-              <label>Email</label>
+              <label>Correo</label>
               <input
                 type="text"
                 {...register("email", {
@@ -76,7 +70,7 @@ const Login = () => {
             </div>
             <br />
             <div className="input-field">
-              <label>Password</label>
+              <label>Contraseña</label>
               <input
                 type="text"
                 {...register("password", {
@@ -99,7 +93,7 @@ const Login = () => {
                 marginTop: "20px",
               }}
             >
-              <span className="underlinedText">Forgot your password?</span>
+              <span className="underlinedText">¿Olvidaste tu contraseña?</span>
             </div>
             <div
               style={{
@@ -109,7 +103,7 @@ const Login = () => {
               }}
             >
               <button className="button" type="submit">
-                Sign in
+                Iniciar sesión
               </button>
             </div>
           </div>

@@ -16,15 +16,21 @@ import disney from "../../assets/images/disney.png";
 import ford from "../../assets/images/ford.png";
 import latam from "../../assets/images/latam.png";
 import coca from "../../assets/svg/coca.svg";
-import fox from '../../assets/svg/fox.svg';
-import san from '../../assets/svg/san.svg';
-import linkedin from '../../assets/svg/Linkedin.svg'
+import fox from "../../assets/svg/fox.svg";
+import san from "../../assets/svg/san.svg";
+import linkedin from "../../assets/svg/Linkedin.svg";
 
 const Carrusel = () => {
   return (
-    <>
-      <div style={{ display: 'flex',  alignItems: "center", justifyContent: 'center' }}>
-        <h1 style={{ color: "#fff", textAlign: 'center' }}>
+    <div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <h1 style={{ color: "#fff", textAlign: "center" }}>
           Impulsando a las empresas líderes del mundo{" "}
         </h1>
       </div>
@@ -185,7 +191,7 @@ const Carrusel = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -182,9 +182,9 @@ const EditScreen = () => {
                   cursor: "pointer"
 
                 }}
-                type="submit"
+                onClick={handleGoBack}
               >
-                Editar
+                Volver
               </button>
             </div>
 
@@ -201,9 +201,9 @@ const EditScreen = () => {
                   cursor: "pointer"
 
                 }}
-                onClick={handleGoBack}
+                type="submit"
               >
-                Volver
+                Editar
               </button>
             </div>
           </div>

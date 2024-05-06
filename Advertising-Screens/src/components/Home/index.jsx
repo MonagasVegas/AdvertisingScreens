@@ -7,15 +7,43 @@ import "./index.css";
 const Home = () => {
   return (
     <>
-      <div className="container-home">
+      <div>
         <div style={{ marginTop: "10px" }}>
           <Header />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: "50px",
+            gap: "10px",
+          }}
+        >
+          <span style={{ color: "#fff", fontSize: "30px", fontWeight: "bold", textAlign: "center"  }}>
+            En el mundo competitivo de la publicidad, la tecnología es tu mejor
+            aliada
+          </span>
+          <span
+            style={{ color: "#554F95", fontSize: "30px", fontWeight: "bold", textAlign: "center"  }}
+          >
+            Domínala, adáptate y destaca entre la multitud.
+          </span>
+          <span style={{ color: "#fff", fontSize: "30px", fontWeight: "bold", textAlign: "center"  }}>
+            ¡El éxito está a tu alcance!
+          </span>
         </div>
 
         <div style={{ paddingTop: "5%" }}>
           <ScreenCards />
         </div>
-        <div style={{ width: "50%", paddingTop: "10%", paddingBottom: "10%" }}>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div>
           <Carrusel />
         </div>
       </div>
