@@ -7,7 +7,7 @@ import { deleteScreen } from "../../services/deleteScreen";
 import { getScreens } from "../../services/getScreens";
 
 // eslint-disable-next-line react/prop-types
-const ScreenDetails = ({ screenId, setOpen }) => {
+const ScreenDetails = ({ screenId, setOpen, setFilterScreen }) => {
   const [response, setResponse] = useState();
   const navigate = useNavigate();
   const token = window.localStorage.getItem("@token");
@@ -25,15 +25,11 @@ const ScreenDetails = ({ screenId, setOpen }) => {
   }, [screenId, token]);
 
   const handleDetele = () => {
-
-    console.log('ESTAMOS EN ELIMINAR')
     deleteScreen(screenId, token)
       .then(() => {
-        
-        getScreens(pageSize, offset, token)
-        .then(() => {
-          console.log('estamos en el get screen')
+        getScreens(pageSize, offset, token).then(({ data: { data: data } }) => {
           setOpen(false);
+          setFilterScreen(data)
         });
       })
       .catch((error) => {
@@ -42,7 +38,6 @@ const ScreenDetails = ({ screenId, setOpen }) => {
   };
 
   const handleEdit = () => {
-    console.log("hacemos click");
     navigate("/editScreen", { state: { response } });
   };
 
@@ -117,7 +112,7 @@ const ScreenDetails = ({ screenId, setOpen }) => {
               padding: "8px 8px 8px 8px",
               fontWeight: "bold",
               color: "#fff",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
             onClick={handleDetele}
           >
@@ -135,7 +130,7 @@ const ScreenDetails = ({ screenId, setOpen }) => {
               padding: "8px 8px 8px 8px",
               fontWeight: "bold",
               color: "#fff",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
             onClick={handleEdit}
           >

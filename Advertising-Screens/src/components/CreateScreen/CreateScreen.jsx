@@ -59,8 +59,8 @@ const CreateScreen = () => {
                   message: "Debe ingresar mínimo 10 caracteres.",
                 },
                 maxLength: {
-                  value: 30,
-                  message: "Debe ingresar máaximo 20 caracteres.",
+                  value: 50,
+                  message: "Debe ingresar máximo 50 caracteres.",
                 },
               })}
             />
@@ -170,14 +170,13 @@ const CreateScreen = () => {
                   padding: "8px 8px 8px 8px",
                   fontWeight: "bold",
                   color: "#fff",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
-                type="submit"
+                onClick={handleGoBack}
               >
-                Crear
+                Volver
               </button>
             </div>
-
             <div style={{ width: "100%" }}>
               <button
                 style={{
@@ -188,11 +187,11 @@ const CreateScreen = () => {
                   padding: "8px 8px 8px 8px",
                   fontWeight: "bold",
                   color: "#fff",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
-                onClick={handleGoBack}
+                type="submit"
               >
-                Volver
+                Crear
               </button>
             </div>
           </div>

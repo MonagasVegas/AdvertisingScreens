@@ -6,6 +6,30 @@ import { getScreens } from "../../services/getScreens";
 import Dialog from "@mui/material/Dialog";
 import ScreenDetails from "../ScreenDetails";
 import { isEmpty } from "lodash";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+const StyledPagination = styled(Pagination)(() => ({
+  "& .MuiPaginationItem-root": {
+    color: "#fff", // Números en blanco
+    border: "1px solid #554F95", // Bordes morados
+    backgroundColor: "transparent", // Fondo transparente
+    "&:hover": {
+      backgroundColor: "#554F95", // Fondo morado en el hover
+      color: "#fff", // Números en blanco en el hover
+    },
+    "&.Mui-selected": {
+      backgroundColor: "#554F95", // Fondo morado en el número seleccionado
+      color: "#fff", // Número seleccionado en blanco
+      "&:hover": {
+        backgroundColor: "#554F95", // Fondo morado en el hover del número seleccionado
+        color: "#fff", // Número seleccionado en blanco en el hover
+      },
+    },
+  },
+}));
 
 const ScreenCards = () => {
   const [screens, setScreens] = useState([]);
@@ -13,22 +37,24 @@ const ScreenCards = () => {
   const [screenId, setScreenId] = useState();
   const [filterScreen, setFilterScreen] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [page, setPage] = useState(1);
 
-  
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   useEffect(() => {
     const token = window.localStorage.getItem("@token");
-    const pageSize = 8;
     const offset = 1;
 
-    getScreens(pageSize, offset, token)
+    getScreens(page, offset, token)
       .then(({ data: { data: data } }) => {
         setScreens(data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [page]);
 
   // Capturamos el id de lo seleccionado
   const handleDetail = (event) => {
@@ -98,9 +124,25 @@ const ScreenCards = () => {
       </div>
       {!isEmpty(searchQuery) && isEmpty(filterScreen) && (
         <div className="error">
-          <p style={{ fontSize: 20, paddingTop: 50}}>Búsqueda sin resultados.</p>
+          <p style={{ fontSize: 20}}>
+            Búsqueda sin resultados.
+          </p>
         </div>
       )}
+
+      <br />
+      <br />
+      <br />
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <StyledPagination
+          variant="outlined"
+          color="primary"
+          count={10}
+          page={page}
+          onChange={handleChange}
+          size="large"
+        />
+      </Box>
 
       <Dialog
         fullWidth
@@ -108,7 +150,11 @@ const ScreenCards = () => {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <ScreenDetails screenId={screenId} setOpen={setOpen} />
+        <ScreenDetails
+          screenId={screenId}
+          setOpen={setOpen}
+          setFilterScreen={setFilterScreen}
+        />
       </Dialog>
     </div>
   );

@@ -4,33 +4,16 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-        <div className="container-header">
-          <Link
-            to="/home"
-            className="text-link"
-          >
-            Inicio
-          </Link>
-          <Link
-            // to="/reviews"
-            className="text-link"
-          >
-            Contacto
-          </Link>
-          <Link
-            // to="/reviews"
-            className="text-link"
-          >
-            Quienes Somos
-          </Link>
-
-          <Link
-            className="text-button"
-             to="/createScreen"
-          >
-            Crear Screen
-          </Link>
-        </div>
+    <div className="container-header">
+      <Link to="/home" className="text-link">
+        Inicio
+      </Link>
+      <Link className="text-link">Contacto</Link>
+      <Link className="text-link">Quienes Somos</Link>
+      <Link className="text-button" to="/createScreen">
+        Crear Screen
+      </Link>
+    </div>
   );
 };
 
