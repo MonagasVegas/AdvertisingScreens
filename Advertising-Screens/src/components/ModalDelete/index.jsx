@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { deleteScreen } from "../../services/deleteScreen";
 import { getScreens } from "../../services/getScreens";
 import { colors } from "../../styles/Colors";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // eslint-disable-next-line react/prop-types
 const ModalDelete = ({ setOpenDelete, setFilterScreen, screenId, setOpen }) => {
+  const [loaderDelete, setLoaderDelete] = useState(false);
+
   const token = window.localStorage.getItem("@token");
   const pageSize = 8;
   const offset = 1;
@@ -13,10 +17,12 @@ const ModalDelete = ({ setOpenDelete, setFilterScreen, screenId, setOpen }) => {
   };
 
   const handleDetele = () => {
+    setLoaderDelete(true);
     deleteScreen(screenId, token)
       .then(() => {
         getScreens(pageSize, offset, token).then(({ data: { data: data } }) => {
           setFilterScreen(data);
+          setLoaderDelete(false);
           setOpenDelete(false);
           setOpen(false);
         });
@@ -61,6 +67,7 @@ const ModalDelete = ({ setOpenDelete, setFilterScreen, screenId, setOpen }) => {
           <button
             style={{
               width: "100%",
+              height: "100%",
               borderRadius: "5px",
               background: colors.Grey500,
               border: "2px solid #9E9E9E",
@@ -71,7 +78,7 @@ const ModalDelete = ({ setOpenDelete, setFilterScreen, screenId, setOpen }) => {
             }}
             onClick={handleDetele}
           >
-            Eliminar
+            {loaderDelete ? <CircularProgress size={20} /> : "Eliminar"}
           </button>
         </div>
 
@@ -80,6 +87,7 @@ const ModalDelete = ({ setOpenDelete, setFilterScreen, screenId, setOpen }) => {
             style={{
               background: colors.Grey500,
               width: "100%",
+              height: "100%",
               borderRadius: "5px",
               border: "2px solid #9E9E9E",
               padding: "8px 8px 8px 8px",
