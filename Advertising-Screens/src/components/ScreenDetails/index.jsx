@@ -3,16 +3,15 @@ import image from "../../assets/images/image.png";
 import "./index.css";
 import { getScreensById } from "../../services/getScreensById";
 import { useNavigate } from "react-router-dom";
-import { deleteScreen } from "../../services/deleteScreen";
-import { getScreens } from "../../services/getScreens";
+import { Dialog } from "@mui/material";
+import ModalDelete from "../ModalDelete";
 
 // eslint-disable-next-line react/prop-types
 const ScreenDetails = ({ screenId, setOpen, setFilterScreen }) => {
   const [response, setResponse] = useState();
+  const [openDelete, setOpenDelete] = useState(false);
   const navigate = useNavigate();
   const token = window.localStorage.getItem("@token");
-  const pageSize = 8;
-  const offset = 1;
 
   useEffect(() => {
     getScreensById(screenId, token)
@@ -24,22 +23,19 @@ const ScreenDetails = ({ screenId, setOpen, setFilterScreen }) => {
       });
   }, [screenId, token]);
 
-  const handleDetele = () => {
-    deleteScreen(screenId, token)
-      .then(() => {
-        getScreens(pageSize, offset, token).then(({ data: { data: data } }) => {
-          setOpen(false);
-          setFilterScreen(data)
-        });
-      })
-      .catch((error) => {
-        console.log("🐉 ~ .then ~ error:", error);
-      });
-  };
 
   const handleEdit = () => {
     navigate("/editScreen", { state: { response } });
   };
+
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
+
+const openModal = () => {
+  console.log('esto es abrir modal eliminar')
+  setOpenDelete(true)
+}
 
   return (
     <div
@@ -55,9 +51,10 @@ const ScreenDetails = ({ screenId, setOpen, setFilterScreen }) => {
           padding: "10px 10px 10px 10px",
           display: "flex",
           flexDirection: "row",
+          
         }}
       >
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "100%",  display: 'flex',  }}>
           <img src={response?.picture_url || image} alt="" className="imagen" />
         </div>
         <div
@@ -111,10 +108,10 @@ const ScreenDetails = ({ screenId, setOpen, setFilterScreen }) => {
               border: "2px solid #91c870",
               padding: "8px 8px 8px 8px",
               fontWeight: "bold",
-              color: "#fff",
+              color: "#000",
               cursor: "pointer",
             }}
-            onClick={handleDetele}
+            onClick={openModal}
           >
             Eliminar
           </button>
@@ -129,7 +126,7 @@ const ScreenDetails = ({ screenId, setOpen, setFilterScreen }) => {
               border: "2px solid #91c870",
               padding: "8px 8px 8px 8px",
               fontWeight: "bold",
-              color: "#fff",
+              color: "#000",
               cursor: "pointer",
             }}
             onClick={handleEdit}
@@ -138,6 +135,21 @@ const ScreenDetails = ({ screenId, setOpen, setFilterScreen }) => {
           </button>
         </div>
       </div>
+
+      <Dialog
+        fullWidth
+        maxWidth='sm'
+        open={openDelete}
+        onClose={handleCloseDelete}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <ModalDelete 
+        setOpenDelete={setOpenDelete}
+        setFilterScreen={setFilterScreen}
+        screenId={screenId}
+        setOpen={setOpen}
+ />
+      </Dialog>
     </div>
   );
 };
