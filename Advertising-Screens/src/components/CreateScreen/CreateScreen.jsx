@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Header";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "./index.css";
 import { postScreen } from "../../services/postScreen";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const CreateScreen = () => {
   const navigate = useNavigate();
+  const [loader, setLoader] = useState(false)
   const {
     register,
     handleSubmit,
@@ -18,6 +20,7 @@ const CreateScreen = () => {
   };
 
   const onSubmit = handleSubmit((data) => {
+    setLoader(true)
     const token = window.localStorage.getItem("@token");
     const body = {
       name: data.name,
@@ -31,6 +34,7 @@ const CreateScreen = () => {
     postScreen(body, token)
       .then((res) => {
         navigate("/home");
+        setLoader(false)
       })
       .catch((error) => {
         console.log("ERROR", error);
@@ -165,6 +169,7 @@ const CreateScreen = () => {
                 style={{
                   background: "#000",
                   width: "100%",
+                  height: "100%",
                   borderRadius: "5px",
                   border: "2px solid #554F95",
                   padding: "8px 8px 8px 8px",
@@ -182,6 +187,7 @@ const CreateScreen = () => {
                 style={{
                   background: "#000",
                   width: "100%",
+                  height: "100%",
                   borderRadius: "5px",
                   border: "2px solid #554F95",
                   padding: "8px 8px 8px 8px",
@@ -191,7 +197,7 @@ const CreateScreen = () => {
                 }}
                 type="submit"
               >
-                Crear
+                {loader ? <CircularProgress size={20} /> : 'Crear'}
               </button>
             </div>
           </div>

@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import { useForm } from "react-hook-form";
 import { putScreen } from "../../services/putScreen";
+import CircularProgress from "@mui/material/CircularProgress";
+
 
 const EditScreen = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const [loaderEdit, setLoaderEdit] = useState(false)
   const id = state.response.id;
   const token = window.localStorage.getItem("@token");
 
@@ -21,7 +24,7 @@ const EditScreen = () => {
   };
 
   const onSubmit = handleSubmit((data) => {
-
+    setLoaderEdit(true)
     const body = {
       name: data.name,
       description: data.description,
@@ -34,6 +37,7 @@ const EditScreen = () => {
     putScreen(id, body, token)
       .then((data) => {
         navigate('/home')
+        setLoaderEdit(false)
       })
       .catch((error) => {
         console.log("🐉 ~ putScreen ~ error:", error);
@@ -174,6 +178,7 @@ const EditScreen = () => {
                 style={{
                   background: "#000",
                   width: "100%",
+                  height: "100%",
                   borderRadius: "5px",
                   border: "2px solid #554F95",
                   padding: "8px 8px 8px 8px",
@@ -193,6 +198,7 @@ const EditScreen = () => {
                 style={{
                   background: "#000",
                   width: "100%",
+                  height: "100%",
                   borderRadius: "5px",
                   border: "2px solid #554F95",
                   padding: "8px 8px 8px 8px",
@@ -203,7 +209,7 @@ const EditScreen = () => {
                 }}
                 type="submit"
               >
-                Editar
+                {loaderEdit ? <CircularProgress size={20} /> : 'Editar'}
               </button>
             </div>
           </div>
