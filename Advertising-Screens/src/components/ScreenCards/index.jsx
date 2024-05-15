@@ -7,7 +7,6 @@ import Dialog from "@mui/material/Dialog";
 import ScreenDetails from "../ScreenDetails";
 import { isEmpty } from "lodash";
 import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
