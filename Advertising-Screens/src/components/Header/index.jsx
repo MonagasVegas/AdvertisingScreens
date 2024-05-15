@@ -9,9 +9,11 @@ const Header = () => {
         Inicio
       </Link>
       <Link className="text-link">Contacto</Link>
-      <Link className="text-link">Quienes Somos</Link>
-      <Link className="text-button" to="/createScreen">
+      <Link className="text-link" to="/createScreen">
         Crear Screen
+      </Link>
+      <Link className="text-button" to="/">
+        Sign off
       </Link>
     </div>
   );

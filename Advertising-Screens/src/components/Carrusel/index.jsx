@@ -11,7 +11,6 @@ import "swiper/css/scrollbar";
 import bmw from "../../assets/images/bmw.png";
 import claro from "../../assets/images/claro.png";
 import spo from "../../assets/images/spo.png";
-import nike from "../../assets/images/nike.png";
 import disney from "../../assets/images/disney.png";
 import ford from "../../assets/images/ford.png";
 import latam from "../../assets/images/latam.png";
@@ -19,6 +18,7 @@ import coca from "../../assets/svg/coca.svg";
 import fox from "../../assets/svg/fox.svg";
 import san from "../../assets/svg/san.svg";
 import linkedin from "../../assets/svg/Linkedin.svg";
+
 
 const Carrusel = () => {
   return (
@@ -91,18 +91,6 @@ const Carrusel = () => {
               }}
             >
               <img src={spo} alt="" width={200} />
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide className="slider-item ">
-            <div
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-              }}
-            >
-              <img src={nike} alt="" width={200} />
             </div>
           </SwiperSlide>
 
