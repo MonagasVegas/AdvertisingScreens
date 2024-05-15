@@ -20,6 +20,9 @@ import fox from "../../assets/svg/fox.svg";
 import san from "../../assets/svg/san.svg";
 import linkedin from "../../assets/svg/Linkedin.svg";
 
+import ey from '../../assets/ey.webp'
+
+
 const Carrusel = () => {
   return (
     <div>
@@ -91,18 +94,6 @@ const Carrusel = () => {
               }}
             >
               <img src={spo} alt="" width={200} />
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide className="slider-item ">
-            <div
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-              }}
-            >
-              <img src={nike} alt="" width={200} />
             </div>
           </SwiperSlide>
 
