@@ -36,7 +36,12 @@ const ScreenCards = () => {
   const [screenId, setScreenId] = useState();
   const [filterScreen, setFilterScreen] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [totalPages, setTotalPages] = useState(0);
+  console.log("🐉 ~ ScreenCards ~ totalPages:", totalPages)
   const [page, setPage] = useState(1);
+  console.log("🐉 ~ ScreenCards ~ page:", page)
+  const pageSize = 10; // Tamaño de página
+
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -44,16 +49,23 @@ const ScreenCards = () => {
 
   useEffect(() => {
     const token = window.localStorage.getItem("@token");
-    const offset = 1;
+    const offset = (page - 1) * pageSize; // Cálculo del offset
+    console.log("🐉 ~ useEffect ~ offset:", offset)
 
-    getScreens(page, offset, token)
+
+    getScreens(pageSize, offset, token)
       .then(({ data: { data: data } }) => {
         setScreens(data);
+        console.log("🐉 ~ .then ~ data:", data)
+         // Calcular el número total de páginas
+         const total = Math.ceil(data.length / page);
+         console.log("🐉 ~ .then ~ total:", total)
+         setTotalPages(total);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [page]);
+  }, [pageSize, page]);
 
   // Capturamos el id de lo seleccionado
   const handleDetail = (event) => {
@@ -136,7 +148,7 @@ const ScreenCards = () => {
         <StyledPagination
           variant="outlined"
           color="primary"
-          count={10}
+          count={totalPages} // Usar totalPages como el número total de páginas
           page={page}
           onChange={handleChange}
           size="large"
